@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      comment: {
+      content: {
         allowNull: false,
         type: DataTypes.STRING,
       },
@@ -30,15 +30,33 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
       },
+      is_deleted: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+      },
+      depth: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
+      },
+      parent: {
+        allowNull: true,
+        type: DataTypes.INTEGER.UNSIGNED,
+      },
     },
     {
-      tableName: "post",
+      tableName: "comment",
       timestamps: true,
     }
   );
-  User.beforeSave(async (user, options) => {});
 
-  User.associate = function (models) {};
+  comment.beforeSave(async (user, options) => {
+    if (comment.changed("password")) {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(comment.password, salt);
+    }
+  });
+
+  comment.associate = function (models) {};
 
   return comment;
 };

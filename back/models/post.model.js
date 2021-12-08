@@ -18,15 +18,19 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      is_deleted: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+      },
     },
     {
       tableName: "post",
       timestamps: true,
     }
   );
-  User.beforeSave(async (user, options) => {});
+  post.beforeSave(async (user, options) => {});
 
-  User.associate = function (models) {};
+  post.associate = function (models) {};
 
   return post;
 };
