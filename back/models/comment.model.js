@@ -34,10 +34,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
       },
-      depth: {
-        allowNull: false,
-        type: DataTypes.INTEGER.UNSIGNED,
-      },
       parent: {
         allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED,
