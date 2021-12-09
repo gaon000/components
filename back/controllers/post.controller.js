@@ -17,3 +17,8 @@ const modifyPost = async (req, res, next) => {
   try {
   } catch (err) {}
 };
+
+const deletePost = async (req, res, next) => {
+  try {
+  } catch (err) {}
+};
