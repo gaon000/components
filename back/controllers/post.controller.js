@@ -1,4 +1,4 @@
-const getPosts = async (req, res, next) => {
+const getPostList = async (req, res, next) => {
   try {
   } catch (err) {}
 };
