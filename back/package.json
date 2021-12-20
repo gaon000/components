@@ -24,8 +24,10 @@
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
     "@babel/node": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "babel-jest": "^27.4.5",
+    "cross-env": "^7.0.3",
     "jest": "^27.4.5",
     "supertest": "^6.1.6"
   }

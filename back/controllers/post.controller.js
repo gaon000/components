@@ -1,5 +1,8 @@
 const getPostList = async (req, res, next) => {
   try {
+    //TODO
+    //const { page, limit, category } = req.query
+    return res.status(200);
   } catch (err) {}
 };
 
@@ -22,3 +25,5 @@ const deletePost = async (req, res, next) => {
   try {
   } catch (err) {}
 };
+
+export { getPostList, getPost, createPost, modifyPost, deletePost };
