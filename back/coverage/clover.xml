@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1640009120905" clover="3.2.0">
-  <project timestamp="1640009120905" name="All files">
+<coverage generated="1640014059529" clover="3.2.0">
+  <project timestamp="1640014059529" name="All files">
     <metrics statements="11" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1" elements="16" coveredelements="8" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
-    <file name="post.controller.js" path="C:\Users\gaon0\my-blog\back\controllers\post.controller.js">
+    <file name="post.controller.js" path="C:\Users\gaon0\my-blog\back\src\controllers\post.controller.js">
       <metrics statements="11" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>

@@ -1,4 +1,4 @@
-import { getPostList } from "../../controllers/post.controller";
+import { getPostList } from "../../src/controllers/post.controller";
 
 beforeAll(async () => {});
 
