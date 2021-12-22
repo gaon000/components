@@ -6,7 +6,7 @@ export default class postTable {
     return await models.Post.create(data);
   }
 
-  async getAllPosts() {
+  async getPostList() {
     // to do pagination
     try {
       return await models.Post.findAll();
