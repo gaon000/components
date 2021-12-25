@@ -6,10 +6,13 @@ export default class postTable {
     return await models.Post.create(data);
   }
 
-  async getPostList() {
+  async getPostList(condition) {
     // to do pagination
     try {
-      return await models.Post.findAll();
+      return await models.Post.findAll({
+        where: condition,
+        attributes: [title, createdAt, subject, hits],
+      });
     } catch (e) {
       throw new Error(e);
     }
@@ -22,7 +25,7 @@ export default class postTable {
           id,
           isDeleted: false,
         },
-        attributes: [writer, id, createdAt, updatedAt, hits, content, subject],
+        attributes: [id, createdAt, updatedAt, hits, content, title, subject],
       });
     } catch (e) {
       throw new Error(e);
