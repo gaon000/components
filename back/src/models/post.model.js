@@ -6,13 +6,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      subject: {
+      title: {
         allowNull: false,
         type: DataTypes.STRING,
+      },
+      subject: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
       },
       hits: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED,
+        defaultValue: 0,
       },
       content: {
         allowNull: false,
