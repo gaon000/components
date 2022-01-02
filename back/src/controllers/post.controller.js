@@ -51,9 +51,16 @@ const getPost = async (req, res, next) => {
   let transaction = null;
   try {
     transaction = await models.sequelize.transaction();
+    const { postId } = req.params;
+    console.log(postId);
+    const postContents = await postTable.getPost(postId);
+    if (postContents === null)
+      throw createError(httpStatus.BAD_REQUEST, "INVALID POST ID");
     await transaction.commit();
+    return res.status(200).json({ message: "ok", result: postContents });
   } catch (err) {
     await transaction.rollback();
+    next(err);
   }
 };
 
