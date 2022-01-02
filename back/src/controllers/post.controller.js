@@ -1,5 +1,7 @@
 import postTable from "../databases/postTable";
 import models from "../models";
+import httpStatus from "http-status";
+import createError from "http-errors";
 
 const getPostList = async (req, res, next) => {
   let transaction = null;
@@ -19,7 +21,7 @@ const getPostList = async (req, res, next) => {
     return res.status(200).json({ message: "ok", result: postList });
   } catch (err) {
     await transaction.rollback();
-    return res.status(500).json({ message: "bad" });
+    next(err);
   }
 };
 
@@ -28,19 +30,27 @@ const createPost = async (req, res, next) => {
   try {
     transaction = await models.sequelize.transaction();
     const { title, contents, writer, subject } = req.body;
+    if (
+      title === undefined ||
+      contents === undefined ||
+      writer === undefined ||
+      subject === undefined
+    )
+      throw createError(httpStatus.BAD_REQUEST, "INVALID PARAMETER");
+
     await postTable.store({ title, contents, writer, subject });
     await transaction.commit();
-    return res.status(200).json({ message: "ok" });
+    return res.status(201).json({ message: "ok" });
   } catch (err) {
     await transaction.rollback();
-    return res.status(500).json({ message: "bad" });
+    next(err);
   }
 };
 
 const getPost = async (req, res, next) => {
   let transaction = null;
   try {
-    transaction = models.sequelize.transaction();
+    transaction = await models.sequelize.transaction();
     await transaction.commit();
   } catch (err) {
     await transaction.rollback();

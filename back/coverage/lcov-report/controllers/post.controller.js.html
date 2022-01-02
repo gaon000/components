@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.58% </span>
+                <span class="strong">61.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/41</span>
+                <span class='fraction'>27/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>2/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.58% </span>
+                <span class="strong">61.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/41</span>
+                <span class='fraction'>27/44</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,7 +133,20 @@
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -159,16 +172,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,6 +227,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import postTable from "../databases/postTable";
 import models from "../models";
+import httpStatus from "http-status";
+import createError from "http-errors";
 &nbsp;
 const getPostList = async (req, res, next) =&gt; {
   let transaction = null;
@@ -224,28 +248,37 @@ const getPostList = async (req, res, next) =&gt; {
     return res.status(200).json({ message: "ok", result: postList });
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    await transaction.rollback();</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(500).json({ message: "bad" });</span>
+<span class="cstat-no" title="statement not covered" >    next(err);</span>
   }
 };
 &nbsp;
-const createPost = <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
-  let transaction = <span class="cstat-no" title="statement not covered" >null;</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    transaction = await models.sequelize.transaction();</span>
-    const { title, contents, writer, subject } = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >    await postTable.store({ title, contents, writer, subject });</span>
-<span class="cstat-no" title="statement not covered" >    await transaction.commit();</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(200).json({ message: "ok" });</span>
+const createPost = async (req, res, next) =&gt; {
+  let transaction = null;
+  try {
+    transaction = await models.sequelize.transaction();
+    const { title, contents, writer, subject } = req.body;
+    if (
+      title === undefined ||
+      contents === undefined ||
+      writer === undefined ||
+      subject === undefined
+    )
+      throw createError(httpStatus.BAD_REQUEST, "INVALID PARAMETER");
+&nbsp;
+    await postTable.store({ title, contents, writer, subject });
+    await transaction.commit();
+    return res.status(201).json({ message: "ok" });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    await transaction.rollback();</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(500).json({ message: "bad" });</span>
+    console.log(err);
+    await transaction.rollback();
+    next(err);
   }
 };
 &nbsp;
 const getPost = <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
   let transaction = <span class="cstat-no" title="statement not covered" >null;</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    transaction = models.sequelize.transaction();</span>
+<span class="cstat-no" title="statement not covered" >    transaction = await models.sequelize.transaction();</span>
 <span class="cstat-no" title="statement not covered" >    await transaction.commit();</span>
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    await transaction.rollback();</span>
@@ -280,7 +313,7 @@ export { getPostList, getPost, createPost, modifyPost, deletePost };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sun Jan 02 2022 21:15:57 GMT+0900 (대한민국 표준시)
+                at Sun Jan 02 2022 22:12:23 GMT+0900 (대한민국 표준시)
             </div>
         </div>
         <script src="../prettify.js"></script>
