@@ -4,7 +4,7 @@ import models from "../models";
 const getPostList = async (req, res, next) => {
   let transaction = null;
   try {
-    transaction = models.sequelize.transaction();
+    transaction = await models.sequelize.transaction();
     //TODO
     //const { page, limit, category } = req.query
     const { subject } = req.query;
@@ -26,7 +26,7 @@ const getPostList = async (req, res, next) => {
 const createPost = async (req, res, next) => {
   let transaction = null;
   try {
-    transaction = models.sequelize.transaction();
+    transaction = await models.sequelize.transaction();
     const { title, contents, writer, subject } = req.body;
     await postTable.store({ title, contents, writer, subject });
     await transaction.commit();
