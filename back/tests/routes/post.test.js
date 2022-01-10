@@ -71,7 +71,6 @@ describe("get post contents", () => {
       return {
         title: "test",
         contents: "<p>안녕하세요</p>",
-        writer: "admin",
         subject: "1",
       };
     return null;
