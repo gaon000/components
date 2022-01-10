@@ -3,6 +3,7 @@ import {
   getPost,
   getPostList,
   modifyPost,
+  deletePost,
 } from "../../src/controllers/post.controller";
 import postTable from "../../src/databases/postTable";
 import models from "../../src/models";
@@ -126,5 +127,25 @@ describe("modify post contents", () => {
     };
     await modifyPost(req, res, next);
     expect(next).toHaveBeenCalled();
+  });
+});
+
+describe("delete post", () => {
+  const res = {
+    status: jest.fn(() => res),
+    json: jest.fn((data) => data),
+  };
+  const next = jest.fn();
+  postTable.deletePost = jest.fn((id) => {
+    return true;
+  });
+  test("it should return 200", async () => {
+    const req = {
+      params: {
+        postId: 1,
+      },
+    };
+    await deletePost(req, res, next);
+    expect(res.status).toBeCalledWith(200);
   });
 });

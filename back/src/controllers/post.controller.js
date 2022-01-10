@@ -79,10 +79,14 @@ const modifyPost = async (req, res, next) => {
 const deletePost = async (req, res, next) => {
   let transaction = null;
   try {
-    transaction = models.sequelize.transaction();
+    transaction = await models.sequelize.transaction();
+    const { postId } = req.params;
+    await postTable.deletePost(postId);
     await transaction.commit();
+    return res.status(200);
   } catch (err) {
     await transaction.rollback();
+    next(err);
   }
 };
 
