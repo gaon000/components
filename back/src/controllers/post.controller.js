@@ -29,16 +29,11 @@ const createPost = async (req, res, next) => {
   let transaction = null;
   try {
     transaction = await models.sequelize.transaction();
-    const { title, contents, writer, subject } = req.body;
-    if (
-      title === undefined ||
-      contents === undefined ||
-      writer === undefined ||
-      subject === undefined
-    )
+    const { title, contents, subject } = req.body;
+    if (title === undefined || contents === undefined || subject === undefined)
       throw createError(httpStatus.BAD_REQUEST, "INVALID PARAMETER");
 
-    await postTable.store({ title, contents, writer, subject });
+    await postTable.store({ title, contents, subject });
     await transaction.commit();
     return res.status(201).json({ message: "ok" });
   } catch (err) {
