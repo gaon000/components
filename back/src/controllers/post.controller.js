@@ -62,10 +62,17 @@ const getPost = async (req, res, next) => {
 const modifyPost = async (req, res, next) => {
   let transaction = null;
   try {
-    transaction = models.sequelize.transaction();
+    transaction = await models.sequelize.transaction();
+    const { postId } = req.params;
+    const { title, contents, subject } = req.body;
+    if (title === undefined || contents === undefined || subject === undefined)
+      throw createError(httpStatus.BAD_REQUEST, "INVALID PARAMETER");
+    await postTable.modifyPost(postId, { title, contents, subject });
     await transaction.commit();
+    return res.status(200);
   } catch (err) {
     await transaction.rollback();
+    next(err);
   }
 };
 

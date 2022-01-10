@@ -2,6 +2,7 @@ import {
   createPost,
   getPost,
   getPostList,
+  modifyPost,
 } from "../../src/controllers/post.controller";
 import postTable from "../../src/databases/postTable";
 import models from "../../src/models";
@@ -22,7 +23,6 @@ describe("GET all post", () => {
     postTable.getPostList = jest.fn(() => 1);
     const req = { query: { subject: "1" } };
     const response = await getPostList(req, res, next);
-    console.log(response);
     expect(res.status).toBeCalledWith(200);
     expect(response.result).toBe(1);
   });
@@ -40,7 +40,6 @@ describe("create post", () => {
       body: {
         title: "test",
         contents: "<p>안녕하세요</p><p>ㅎㅇㅎㅇ</p>",
-        writer: "admin",
         subject: "1",
       },
     };
@@ -78,12 +77,10 @@ describe("get post contents", () => {
   test("it should return 200 with specific post", async () => {
     const req = { params: { postId: 1 } };
     const response = await getPost(req, res, next);
-    console.log(response);
     expect(res.status).toBeCalledWith(200);
     expect(response.result).toEqual({
       title: "test",
       contents: "<p>안녕하세요</p>",
-      writer: "admin",
       subject: "1",
     });
   });
@@ -91,6 +88,43 @@ describe("get post contents", () => {
     const req = { params: { postId: 2 } };
     const response = await getPost(req, res, next);
     //todo identify http status code
+    expect(next).toHaveBeenCalled();
+  });
+});
+
+describe("modify post contents", () => {
+  const res = {
+    status: jest.fn(() => res),
+    json: jest.fn((data) => data),
+  };
+  const next = jest.fn();
+  postTable.modifyPost = jest.fn((id) => {
+    return true;
+  });
+  test("it should return 200", async () => {
+    const req = {
+      params: {
+        postId: 1,
+      },
+      body: {
+        title: "test",
+        contents: "<p>안녕하세요</p><p>ㅎㅇㅎㅇ</p>",
+        subject: "1",
+      },
+    };
+    await modifyPost(req, res, next);
+    expect(res.status).toBeCalledWith(200);
+  });
+  test("it should return 400", async () => {
+    const req = {
+      params: {
+        postId: 1,
+      },
+      body: {
+        title: "title",
+      },
+    };
+    await modifyPost(req, res, next);
     expect(next).toHaveBeenCalled();
   });
 });
