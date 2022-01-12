@@ -14,7 +14,6 @@ export default class postTable {
         attributes: ["title", "createdAt", "subject", "hits"],
       });
     } catch (e) {
-      console.log(e);
       throw new Error(e);
     }
   }
@@ -31,7 +30,7 @@ export default class postTable {
           "createdAt",
           "updatedAt",
           "hits",
-          "content",
+          "contents",
           "title",
           "subject",
         ],

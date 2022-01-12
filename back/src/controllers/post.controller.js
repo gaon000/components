@@ -18,7 +18,6 @@ const getPostList = async (req, res, next) => {
       condition.subject = subject;
     }
     const postList = await Post.getPostList(condition);
-    console.log(postList);
     await transaction.commit();
     return res.status(200).json({ message: "ok", result: postList });
   } catch (err) {
@@ -74,7 +73,7 @@ const modifyPost = async (req, res, next) => {
       throw createError(httpStatus.BAD_REQUEST, "INVALID PARAMETER");
     await Post.modifyPost(postId, { title, contents, subject });
     await transaction.commit();
-    return res.status(200);
+    return res.status(200).json({ message: "ok" });
   } catch (err) {
     await transaction.rollback();
     next(err);
@@ -87,9 +86,10 @@ const deletePost = async (req, res, next) => {
     transaction = await models.sequelize.transaction();
     const Post = new postTable();
     const { postId } = req.params;
+    console.log(postId);
     await Post.deletePost(postId);
     await transaction.commit();
-    return res.status(200);
+    return res.status(200).json({ message: "ok" });
   } catch (err) {
     await transaction.rollback();
     next(err);
