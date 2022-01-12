@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon --exec babel-node ./src/bin/www",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/bin/www",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "build": "babel src -s -D -d dist"
   },

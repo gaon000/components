@@ -5,8 +5,16 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
 import v1Router from "./routes/v1";
+import db from "./models";
 
 const app = express();
+
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("db 연결 성공 ");
+  })
+  .catch(console.error);
 
 app.use(cors());
 app.use(logger("dev"));
