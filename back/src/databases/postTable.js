@@ -42,14 +42,11 @@ export default class postTable {
 
   async modifyPost(id, data) {
     try {
-      return await models.Post.update(
-        { data },
-        {
-          where: {
-            id,
-          },
-        }
-      );
+      return await models.Post.update(data, {
+        where: {
+          id,
+        },
+      });
     } catch (e) {
       throw new Error(e);
     }
