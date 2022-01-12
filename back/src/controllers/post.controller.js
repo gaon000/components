@@ -18,6 +18,7 @@ const getPostList = async (req, res, next) => {
       condition.subject = subject;
     }
     const postList = await Post.getPostList(condition);
+    console.log(postList);
     await transaction.commit();
     return res.status(200).json({ message: "ok", result: postList });
   } catch (err) {
